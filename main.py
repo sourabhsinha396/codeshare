@@ -1,12 +1,12 @@
-from fastapi import FastAPI, WebSocket
+from fastapi import FastAPI, WebSocket, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 
-
+templates = Jinja2Templates(directory="templates")
 app = FastAPI()
 
 
-@app.websocket("/ws")
-async def health_check(websocket: WebSocket):
-    await websocket.accept()
-    while True:
-        data = await websocket.receive_text()
-        await websocket.send_json({"msg":data})
+@app.get("/{room_id}", response_class=HTMLResponse)
+async def chatroom(request: Request, room_id: str):
+    context = {"request": request, "room_id": room_id}
+    return templates.TemplateResponse("chatroom.html", context)
