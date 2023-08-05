@@ -2,3 +2,5 @@ fastapi==0.100.0
 websockets==11.0.3
 uvicorn==0.23.1 
 Jinja2==3.1.2
+broadcaster==0.2.0
+asyncio-redis==0.16.0 
