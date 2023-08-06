@@ -23,8 +23,8 @@
         
         <script>
             let editor = document.getElementById("editor")
-            room_id = document.getElementById('room-id').textContent
-            let ws = new WebSocket(`ws://localhost:8000/{{room_id}}`);
+            roomId = document.getElementById('room-id').textContent
+            let ws = new WebSocket(`ws://${document.domain}:8000/${roomId}`);
             console.log("Websocket endpoint is",ws)
 
             ws.onmessage = function(event) {
