@@ -65,7 +65,7 @@ sudo apt update
 # Install Docker
 curl -fsSL https://get.docker.com | sudo sh
 # Add your user to the docker group
-sudo usermod -aG docker $USER
+sudo usermod -aG docker ${USERNAME}
 
 # Install Docker Compose
 sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
