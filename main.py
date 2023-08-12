@@ -28,7 +28,7 @@ async def chatroom_ws_sender(websocket: WebSocket, room_id: str):
             await websocket.send_text(event.message)
 
 
-@app.websocket("/{room_id}")
+@app.websocket("/ws/{room_id}")
 async def websocket_chat(websocket: WebSocket, room_id: str):
     await websocket.accept()
     await run_until_first_complete(

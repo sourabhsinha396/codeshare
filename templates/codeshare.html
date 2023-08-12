@@ -29,8 +29,8 @@
                 return location.protocol === 'https:';
             }
             const wsProtocol = isSecure() ? 'wss' : 'ws';
-
-            let ws = new WebSocket(`${wsProtocol}://${document.domain}:8000/${roomId}`);
+            const wsPort = isSecure() ? '' : ':8000';
+            let ws = new WebSocket(`${wsProtocol}://${document.domain}${wsPort}/ws/${roomId}`);
             console.log("Websocket endpoint is",ws)
 
             ws.onmessage = function(event) {
