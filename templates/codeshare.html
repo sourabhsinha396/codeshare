@@ -24,7 +24,13 @@
         <script>
             let editor = document.getElementById("editor")
             roomId = document.getElementById('room-id').textContent
-            let ws = new WebSocket(`ws://${document.domain}:8000/${roomId}`);
+
+            function isSecure() {
+                return location.protocol === 'https:';
+            }
+            const wsProtocol = isSecure() ? 'wss' : 'ws';
+
+            let ws = new WebSocket(`${wsProtocol}://${document.domain}:8000/${roomId}`);
             console.log("Websocket endpoint is",ws)
 
             ws.onmessage = function(event) {
