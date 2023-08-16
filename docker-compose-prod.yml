@@ -32,7 +32,7 @@ services:
       - ../nginx/certbot/www:/var/www/certbot/:ro
       - ../nginx/certbot/conf/:/etc/nginx/ssl/:ro
     depends_on:
-      - web
+      - codeshare_web
       - certbot
     restart: always
 
