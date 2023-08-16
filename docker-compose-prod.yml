@@ -17,11 +17,11 @@ services:
     # removed --reload for production
     restart: always
 
-  codeshare_redis:
+  redis:
     image: redis:latest
     command: redis-server --bind 0.0.0.0
 
-  codeshare_nginx:
+  nginx:
     image: nginx:latest
     ports:
       - "80:80"
@@ -36,7 +36,7 @@ services:
       - certbot
     restart: always
 
-  codeshare_certbot:
+  certbot:
     image: certbot/certbot:latest
     command: renew
     volumes:
