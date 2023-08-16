@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  web:
+  codeshare_web:
     build:
       context: ./
       dockerfile: Dockerfile
@@ -17,11 +17,11 @@ services:
     # removed --reload for production
     restart: always
 
-  redis:
+  codeshare_redis:
     image: redis:latest
     command: redis-server --bind 0.0.0.0
 
-  nginx:
+  codeshare_nginx:
     image: nginx:latest
     ports:
       - "80:80"
@@ -36,7 +36,7 @@ services:
       - certbot
     restart: always
 
-  certbot:
+  codeshare_certbot:
     image: certbot/certbot:latest
     command: renew
     volumes:
