@@ -15,11 +15,15 @@ services:
       - ./:/app
     command: uvicorn main:app --host 0.0.0.0 --port 8000
     # removed --reload for production
+    networks:
+      - common
     restart: always
 
   redis:
     image: redis:latest
     command: redis-server --bind 0.0.0.0
+    networks:
+      - common
 
   nginx:
     image: nginx:latest
@@ -34,6 +38,8 @@ services:
     depends_on:
       - codeshare_web
       - certbot
+    networks:
+      - common
     restart: always
 
   certbot:
@@ -42,3 +48,8 @@ services:
     volumes:
       - ../nginx/certbot/www/:/var/www/certbot/:rw
       - ../nginx/certbot/conf/:/etc/letsencrypt/:rw
+
+
+networks:
+  common:
+    external: true
