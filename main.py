@@ -11,6 +11,12 @@ templates = Jinja2Templates(directory="templates")
 app = FastAPI(on_startup=[broadcast.connect], on_shutdown=[broadcast.disconnect])
 
 
+@app.get("/", response_class=HTMLResponse)
+async def get(request: Request):
+    context = {"request":request}
+    return templates.TemplateResponse("algoholic/home.html",context)
+
+
 @app.get("/{room_id}/", response_class=HTMLResponse)
 async def get(request: Request, room_id:str):
     context = {"room_id":room_id,"request":request}
